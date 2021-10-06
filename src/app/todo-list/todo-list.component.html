@@ -1,0 +1,27 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of theToDoList">
+                <tr>
+                    <td>{{item.task}}</td>
+                    <td *ngIf="item.completed; else elseBlock">&#10003;</td>
+                        <ng-template #elseBlock>
+                            <button (click)="completeTask(item)">Complete</button>
+                        </ng-template>                                        
+                    <td><button (click)=deleteTask(item)>Delete</button></td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<div>
+    <input type="text" [(ngModel)]="newTask" />
+    <button (click)="addTask()">Add new task</button>
+</div>
